@@ -4,24 +4,24 @@
 
 #include "list.h"
 
-int node_find_str(char *src,char *find)
+int node_find_str(char *src, char *find)
 {
-	char *index,*find_index;
-	if (src == NULL || find == NULL){
+	char *index, *find_index;
+	if (src == NULL || find == NULL) {
 		printf("error\n");
 		return -1;
 	}
-	while(*src!='\0') {
+	while (*src != '\0') {
 		index = src;
 		find_index = find;
-		while(1) {
-			if (*index != *find_index || *find_index == '\0'){
+		while (1) {
+			if (*index != *find_index || *find_index == '\0') {
 				break;
 			}
 			index++;
 			find_index++;
 		}
-		if (*find_index == '\0'){
+		if (*find_index == '\0') {
 			return 0;
 		}
 		src++;
@@ -38,7 +38,7 @@ node_t *node_init(void)
 		printf("error\n");
 		return NULL;
 	}
-	memset(s->str,'\0',sizeof(s->str));
+	memset(s->str, '\0', sizeof(s->str));
 	s->next = NULL;
 
 	return s;
@@ -53,7 +53,7 @@ node_t *node_add(node_t * src, char *str)
 		printf("error\n");
 		return NULL;
 	}
-	strcpy(add->str,str);
+	strcpy(add->str, str);
 	add->next = src->next;
 	src->next = add;
 	return src;
@@ -76,7 +76,7 @@ node_t *node_insert(node_t * src, int index, char *str)
 		printf("error\n");
 		return NULL;
 	}
-	strcpy(add->str,str);
+	strcpy(add->str, str);
 	add->next = p->next;
 	p->next = add;
 
@@ -101,7 +101,7 @@ node_t *node_delete(node_t * src)
 	node_t *p;
 
 	p = src->next;
-	if (src->next == NULL){
+	if (src->next == NULL) {
 		return src;
 	}
 	src->next = src->next->next;
@@ -118,9 +118,9 @@ void node_print(node_t * src)
 	}
 }
 
-int node_is_exist(node_t *src, char *str)
+int node_is_exist(node_t * src, char *str)
 {
-	if (src == NULL || str == NULL){
+	if (src == NULL || str == NULL) {
 		printf("error");
 		return -1;
 	}
@@ -128,7 +128,7 @@ int node_is_exist(node_t *src, char *str)
 	node_t *p;
 	p = src->next;
 	while (NULL != p) {
-		if (node_find_str(p->str,str) == 0){
+		if (node_find_str(p->str, str) == 0) {
 			return 0;
 		}
 		p = p->next;
@@ -167,7 +167,6 @@ int main()
 	src = node_insert(src, 3, dst);
 		node_delete(src);
 	node_print(src);
-
 
 	return 1;
 
